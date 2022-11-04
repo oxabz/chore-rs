@@ -1,0 +1,11 @@
+[package]
+name = "chores-rs"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+
+[dependencies]
+shuttle-service = { version = "0.7.2", features = ["web-warp"] }
+warp = "0.3.3"
