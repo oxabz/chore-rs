@@ -37,7 +37,8 @@ let displayResults = (res) => {
     $("#done").show();
 
     let rstr = res.map((r,i) => `${participants[i]} : ${r}`).join("\n");
-    $("#result-copy").val(rstr);
+
+    $("#copy").data("clipboard-text", rstr);
 }
 
 // display participents 
