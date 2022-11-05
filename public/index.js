@@ -35,6 +35,9 @@ let displayResults = (res) => {
         </li>`);
     });
     $("#done").show();
+
+    let rstr = res.map((r,i) => `${participants[i]} : ${r}`).join("\n");
+    $("#result-copy").val(rstr);
 }
 
 // display participents 
@@ -78,6 +81,8 @@ $(document).ready(function() {
     $('#result').hide();
     $('#done').hide();
 
+    var clipboard = new ClipboardJS('#copy');
+
     // handle get started button
     let getStarted = $("#get-started");
     getStarted.on("click", function(e) {
@@ -119,7 +124,6 @@ $(document).ready(function() {
     
     form.on("submit", function(e) {
         e.preventDefault();
-        console.log("submitting form");
 
         let period = $('input[name="period"]:checked').val();
 
@@ -152,11 +156,8 @@ $(document).ready(function() {
             alert("Please enter an end date");
             return;
         }
-
-        console.log(data);
         
         res = urls(data);
-        console.log(res);
         
         let result = $("#result");
         result.show();

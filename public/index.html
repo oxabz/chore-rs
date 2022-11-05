@@ -16,7 +16,8 @@
         <div class="navbar bg-base-100 w-full">
             <div class="flex-1 justify-between">
                 <a class="btn btn-ghost normal-case text-xl " href="/"><i class="fa-solid fa-broom"></i> chore.rs</a>
-                <a class="btn btn-ghost normal-case text-2xl" href="https://github.com/oxabz/chore-rs"><i class="fa-brands fa-github"></i></a>
+                <a class="btn btn-ghost normal-case text-2xl" href="https://github.com/oxabz/chore-rs"><i
+                        class="fa-brands fa-github"></i></a>
             </div>
         </div>
     </header>
@@ -129,9 +130,10 @@
                         <div class="relative">
                             <ul id="results" class="min-h-16 bg-neutral fg-neutral-content rounded p-6 shadow-xl">
                             </ul>
-                            <button class="btn btn-outline absolute btn-sm top-4 right-4 overflow-x-auto"
-                                aria-label="Copy to clipboard" onclick="copyToClipboard()"><i
+                            <button id="copy" class="btn btn-outline absolute btn-sm top-4 right-4 overflow-x-auto"
+                                aria-label="Copy to clipboard" data-clipboard-target="#result-copy"><i
                                     class="fa-solid fa-clipboard"></i></button>
+                            <textarea name="result-copy" id="result-copy" class="hidden" readonly></textarea>
                         </div>
                     </div>
                 </div>
@@ -150,6 +152,7 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/0b50565179.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js"></script>
     <script src="index.js"></script>
 </body>
 
