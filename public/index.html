@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chore.rs</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.38.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header>
+        <div class="navbar bg-base-100 w-full">
+            <div class="flex-1 justify-between">
+                <a class="btn btn-ghost normal-case text-xl " href="/"><i class="fa-solid fa-broom"></i> chore.rs</a>
+
+                <a class="btn btn-ghost normal-case text-xl" href=""><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- Hero -->
+        <div class="hero min-h-screen bg-base-200">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <h1 class="text-5xl font-bold"><i class="fa-solid fa-broom"></i> chore.rs</h1>
+                    <p class="py-6 text-xl">Use the speed and reliability of 🦀rust🦀 to easily split the chores between
+                        your roomates!</p>
+                    <a id="get-started" href="#begin" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+        </div>
+        <!-- Form -->
+        <div id="begin" class="container mx-auto py-6">
+            <div class="card bg-base-200 w-full shadow-xl">
+                <div class="card-body">
+                    <form id="creation-form" action="">
+
+                        <h2 class="card-title mb-8 text-3xl">Let's distribute those chores !</h2>
+                        <!--Name-->
+                        <div class="mb-6 flex flex-col">
+                            <label for="name">Give us a quick description for the task ? </label>
+                            <input id="name" type="text" class="input input-bordered w-full max-w-xs"
+                                placeholder="e.g. Clean the kitchen">
+                        </div>
+                        <!--Period-->
+                        <div class="mb-6">
+                            <label class="text-md font-medium" for="period">How often should the chore be done ?
+                            </label>
+                            <div class="flex flex-wrap space-x-12 items-center justify-start">
+                                <div class="flex space-x-4 items-center h-full">
+                                    <input class="radio radio-primary" type="radio" id="daily" name="period"
+                                        value="daily" checked>
+                                    <label class="label-text" for="daily">Daily</label>
+                                </div>
+                                <div class="flex space-x-4 items-center h-full">
+                                    <input class="radio radio-primary" type="radio" id="weekly" name="period"
+                                        value="weekly">
+                                    <label class="label-text" for="weekly">Weekly</label>
+                                </div>
+                                <div class="flex space-x-4 items-center h-full">
+                                    <input class="radio radio-primary" type="radio" id="custom-period" name="period"
+                                        value="custom-period">
+                                    <label class="label-text" for="custom-period" hidden>Custom</label>
+                                    <input class="input input-bordered input-info w-full max-w-xs" type="number"
+                                        id="custom-period-value" name="custom-period" min="1" max="365"
+                                        placeholder="Custom">
+                                </div>
+                            </div>
+                        </div>
+                        <!--Dates-->
+                        <div class="flex mb-6 space-x-24 flex-warp">
+                            <div>
+                                <label class="text-md font-medium" for="start">When should it start ?</label>
+                                <input class="input input-bordered input-info w-full max-w-xs" type="date" id="start"
+                                    name="start" />
+                            </div>
+                            <div>
+                                <label class="text-md font-medium" for="end">When should it end ?</label>
+                                <input class="input input-bordered input-info w-full max-w-xs" type="date" id="end"
+                                    name="end" />
+                            </div>
+                        </div>
+                        <!-- participant -->
+                        <p class="text-md font-medium">Who should do it ?</p>
+                        <div class="overflow-x-auto ">
+                            <table class="table w-full">
+                                <tbody>
+                                    <tr>
+                                        <th></th>
+                                        <td class="flex justify-between">
+                                            <div class="input-group">
+                                                <input id="participant-name" type="text"
+                                                    placeholder="Name (e.g. Matthew, David, John...)"
+                                                    class="input input-bordered w-full" />
+                                                <button type="button" id="participant-add" class="btn btn-primary"><i
+                                                        class="fa-solid fa-user-plus"></i>Add</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tbody id="participant-rows">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="flex justify-end mt-6">
+                            <button id="go" class="btn btn-primary">Let's go</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="result" class="container mx-auto">
+            <div class="card bg-base-200 w-full shadow-xl">
+                <div class="card-body">
+                    <div id="wait">
+                        <h2 class="card-title mb-8 text-3xl">Just a sec ...</h2>
+                        <div class="flex justify-center">
+                            <progress id="progress" class="progress mx-4 my-12 progress-primary w-56" value="0" max="100"></progress>
+                        </div>
+                    </div>
+                    <div id="done">
+                        <h2 class="card-title mb-8 text-3xl">All done !</h2>
+                        <div class="relative">
+                            <ul id="results" class="min-h-16 bg-neutral fg-neutral-content rounded p-6 shadow-xl">
+                            </ul>
+                            <button class="btn btn-outline absolute btn-sm top-4 right-4 overflow-x-auto" aria-label="Copy to clipboard" onclick="copyToClipboard()"><i class="fa-solid fa-clipboard"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0b50565179.js" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
