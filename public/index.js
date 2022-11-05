@@ -2,7 +2,7 @@ let participants = [];
 let res = null;
 
 let urls = (data)=>{
-    let name = data.name;
+    let name = encodeURIComponent(data.name);
     let start = data.start;
     let end = data.end;
     let participants = data.participants;

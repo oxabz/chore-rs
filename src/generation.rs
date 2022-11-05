@@ -63,6 +63,8 @@ pub fn generate_callendar() -> BoxedFilter<(Box<dyn Reply>,)> {
             // Add the url property
             let url = format!("webcal://{HOST}/daily/{chore}?start={start}&end={end}&participent={participent}&index={index}&count={count}");
             calendar.append_property(Property::new("URL", &url));
+            let chore = percent_encoding::percent_decode_str(&chore);
+            let chore = chore.decode_utf8_lossy();
             // Add the name property
             let name = format!("{chore} for {participent}");
             calendar.append_property(Property::new("NAME", &name));
@@ -71,11 +73,10 @@ pub fn generate_callendar() -> BoxedFilter<(Box<dyn Reply>,)> {
             for day in days {
                 let mut event = Event::new();
 
-                println!("day: {}", day);
-
                 let start = chrono::NaiveDate::from_ymd(1970, 1, 1).and_hms(0, 0, 0) + chrono::Duration::days(day as i64);
                 let end = start + chrono::Duration::days(1);
 
+                
                 event.summary(&chore);
                 event.starts(start);
                 event.ends(end);
