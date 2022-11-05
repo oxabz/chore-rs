@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -49,18 +49,18 @@
                         <div class="mb-6">
                             <label class="text-md font-medium" for="period">How often should the chore be done ?
                             </label>
-                            <div class="flex flex-wrap space-x-12 items-center justify-start">
-                                <div class="flex space-x-4 items-center h-full">
+                            <div class="flex flex-wrap flex-col md:flex-row md:space-x-12 items-start justify-start">
+                                <div class="flex space-x-4 items-center h-12">
                                     <input class="radio radio-primary" type="radio" id="daily" name="period"
                                         value="daily" checked>
                                     <label class="label-text" for="daily">Daily</label>
                                 </div>
-                                <div class="flex space-x-4 items-center h-full">
+                                <div class="flex space-x-4 items-center h-12">
                                     <input class="radio radio-primary" type="radio" id="weekly" name="period"
                                         value="weekly">
                                     <label class="label-text" for="weekly">Weekly</label>
                                 </div>
-                                <div class="flex space-x-4 items-center h-full">
+                                <div class="flex space-x-4 items-center h-12">
                                     <input class="radio radio-primary" type="radio" id="custom-period" name="period"
                                         value="custom-period">
                                     <label class="label-text" for="custom-period" hidden>Custom</label>
@@ -71,13 +71,13 @@
                             </div>
                         </div>
                         <!--Dates-->
-                        <div class="flex mb-6 space-x-24 flex-warp">
-                            <div>
+                        <div class="flex flex-col mb-6 md:flex-row md:space-x-24">
+                            <div class="flex flex-col mb-4 md:mb-0">
                                 <label class="text-md font-medium" for="start">When should it start ?</label>
                                 <input class="input input-bordered input-info w-full max-w-xs" type="date" id="start"
                                     name="start" />
                             </div>
-                            <div>
+                            <div class="flex flex-col">
                                 <label class="text-md font-medium" for="end">When should it end ?</label>
                                 <input class="input input-bordered input-info w-full max-w-xs" type="date" id="end"
                                     name="end" />
