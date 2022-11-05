@@ -8,7 +8,7 @@ let urls = (data)=>{
     let participants = data.participants;
     let period = data.period;
     
-    let origin = window.location.origin;
+    let origin = window.location.host;
 
     start = Date.parse(start);
     end = Date.parse(end);
@@ -16,7 +16,7 @@ let urls = (data)=>{
     end = Math.floor(end/8.64e7);
 
     return participants.map((participant,i)=>{
-        return `${origin}/${period}/${name}?start=${start}&end=${end}&participent=${participant}&index=${i}&count=${participants.length}`
+        return `webcal://${origin}/${period}/${name}?start=${start}&end=${end}&participent=${participant}&index=${i}&count=${participants.length}`
     })
 }
 
@@ -31,7 +31,7 @@ let displayResults = (res) => {
     res.forEach((result, i) => {
         $results.append(`<li>
             ${participants[i]} :
-            <a class="link link-success" href="webcal://${result}">${result}</a>
+            <a class="link link-success" href="${result}">${result}</a>
         </li>`);
     });
     $("#done").show();
@@ -68,7 +68,7 @@ let copyToClipboard = () => {
     if (res === null) {
         return;
     }
-    let rstr = res.map((r,i) => `${participants[i]} : webcal://${r}`).join("\n");
+    let rstr = res.map((r,i) => `${participants[i]} : ${r}`).join("\n");
 
     // Copy the text inside the text field
     navigator.clipboard.writeText(rstr);
@@ -160,6 +160,7 @@ $(document).ready(function() {
         
         let result = $("#result");
         result.show();
+        scrollTo("#result");
         progress = $("#progress");
         let progressVal = 0
         let progressFinish = ()=>{
