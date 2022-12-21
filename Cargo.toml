@@ -11,7 +11,7 @@ name = "chores"
 path = "src/main.rs"
 
 [dependencies]
-shuttle-service = { version = "0.7.2", features = ["web-warp"] }
+shuttle-service = { version = "0.8", features = ["web-warp"] }
 warp = "0.3.3"
 tokio = { version = "1.13.0", features = ["full"] }
 icalendar = "0.13"
